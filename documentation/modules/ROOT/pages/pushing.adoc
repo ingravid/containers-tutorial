@@ -4,12 +4,12 @@ So far you've been working with your container image locally. Now let's take it 
 
 IMPORTANT: Before continue, you need to create an account at Docker Hub (if you haven't done yet). Just click here: https://hub.docker.com/
 
-First you'll need to tag your image accordingly to the name you gave to your repository on Docker Hub:
+First you'll need to tag your image accordingly to your user name and the name you gave to your repository on Docker Hub:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker tag my-image myrepository/my-image
+docker tag my-image:latest myusername/myrepository:my-image-name-in-the-repo
 ----
 
 [TIP]
@@ -27,7 +27,7 @@ Also, if you build your image already using the tag, you won't need to do this s
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker build -t myrepository/my-image .
+docker build -t myusername/myrepository:my-image-name-in-the-repo .
 ----
 
 ====
@@ -39,9 +39,9 @@ If you now run `docker images` you'll see something like this:
 [.console-output]
 [source,text]
 ----
-REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
-my-image                                     latest              a63dec174904        55 minutes ago      516MB
-myrepository/my-image                        latest              a63dec174904        55 minutes ago      516MB
+REPOSITORY                TAG                                    IMAGE ID            CREATED             SIZE
+my-image                  latest                                 a63dec174904        55 minutes ago      516MB
+myusername/myrepository   my-image-name-in-the-repo              a63dec174904        55 minutes ago      516MB
 ----
 
 It's now ready to be pushed. Before doing it, you just need to login into your Docker Hub account within your terminal:
@@ -57,7 +57,7 @@ And finally you can push it:
 [.console-input]  
 [source,bash,subs="+macros,+attributes"]
 ----
-docker push myrepository/my-image
+docker push myusername/myrepository:my-image-name-in-the-repo
 ----
 
 You should have an output like this:
@@ -65,7 +65,7 @@ You should have an output like this:
 [.console-output]
 [source,text]
 ----
-The push refers to repository [docker.io/myrepository/my-image]
+The push refers to repository [docker.io/myusername/myrepository]
 abea900bc08c: Pushed
 99d5cac89a03: Pushed
 7b08010864ba: Pushed
